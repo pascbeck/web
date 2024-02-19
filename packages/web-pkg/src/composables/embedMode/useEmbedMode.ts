@@ -28,6 +28,10 @@ export const useEmbedMode = () => {
     }
 
     window.parent.postMessage({ name, data }, options)
+    
+    if (window.webit) {
+      window.webkit.messageHandlers[name].postMessage({ name, data }, options)
+    }
   }
 
   const verifyDelegatedAuthenticationOrigin = (eventOrigin: string): boolean => {
